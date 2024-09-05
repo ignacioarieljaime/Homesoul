@@ -1,0 +1,43 @@
+New APIs
+==================================
+- create-audit-request
+  - userID
+  - homeID
+
+- save-auditor-pincode
+  - pincode
+
+- get-auditor-pincode
+  - get all auditor pincode which is login
+
+- get-my-assessment
+  - get login customer assessment ( audit )
+
+
+
+
+Customer Flow Frontend
+==================================
+1) Take assessment
+  1.1 - open promp box( Are you sure you want to submit? (Yes/No) )
+  1.2 - create entry in user audit request table
+  1.3 - entry display in new tab in auditor dashboard
+  1.4 - onclick of that record detail page will open
+  1.5 - accept/reject option
+  1.6 - if accept then change status to accepted
+  1.7 - display start audit button in same detail page
+  1.7 - on click of start open create audit page flow
+  1.8 - only first page will auto populate except this other page will work same
+
+- create-audit-request
+  - userID
+  - homeID
+
+- save-auditor-pincode
+  - pincode
+
+- get-auditor-pincode
+  - get all auditor pincode which is login
+
+- get-my-assessment
+  - get login customer assessment ( audit )

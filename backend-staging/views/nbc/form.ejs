@@ -1,0 +1,37 @@
+<%- include('../layout/header') %>
+<form id="crud-frm" class="crud-frm" method="post" action="<%= url %>" autocomplete="off" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-lg-12 col-12">
+      <div class="card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title">
+            <%= title %>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Tier Title </label>
+                <input type="text" class="form-control" name="nbcTierTitle" value="<%= data != null ? data['nbcTierTitle'] : ''%>" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Points </label>
+                <input type="text" class="form-control" name="ecPoints" value="<%= data != null ? data['ecPoints'] : ''%>" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-info">
+            <%= data==null ? 'Add' : 'Update' %>
+          </button>
+          <a href="/nbc"><button type="button" class="btn btn-default ml-2">Cancel</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<%- include('../layout/footer') %>

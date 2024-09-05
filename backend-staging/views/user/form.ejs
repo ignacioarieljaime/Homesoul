@@ -1,0 +1,110 @@
+<form id="crud-frm" class="crud-frm" method="post" action="<%= url %>" autocomplete="off" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-lg-12 col-12">
+      <div class="card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title">
+            <%= title %>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Name </label>
+                <input type="text" class="form-control" name="name" value="<%= data != null ? data['name'] : ''%>" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Phone </label>
+                <input type="text" class="form-control" name="phone" value="<%= data != null ? data['phone'] : ''%>" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label>Username </label>
+                <input type="text" class="form-control" name="username" value="<%= data != null ? data['username'] : ''%>" required>
+              </div>
+            </div> -->
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Image </label>
+                <div class="custom-file">
+                  <label class="custom-file-label" for="image">Choose Image </label>
+                  <input class="custom-file-input" id="image" type="file" name="image" onchange="previewImage(event, 'image-preview')"/>
+                </div>
+                <div id="image-preview" class="mt-2">
+                  <% if(data != null && data['image']){ %>
+                    <div class="form-group">
+                      <img src="<%= data != null ? data['image'] : ''%>" height="100px" width="120px" alt="">
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" value="<%= data != null ? data['email'] : ''%>" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Status</label>
+              <select class="form-control select2" name="status">
+                <option value="">Select</option>
+                <option value="1" <%= data != null && data['status'] == 1 ? 'selected' : ''%>>Active</option>
+                <option value="2" <%= data != null && data['status'] == 2 ? 'selected' : ''%>>Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" value="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Confirm Password </label>
+                <input type="password" class="form-control" name="confirmPassword" value="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Date of birth</label>
+                <input type="text" class="form-control datepicker" name="date_of_birth" value="<%= data !== null ? data['date_of_birth'] : ''%>">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Date of anniversary</label>
+                <input type="text" class="form-control datepicker" name="date_of_anniversary" value="<%= data !== null ? data['date_of_anniversary'] : ''%>">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input class="form-control" type="file" name="file" />
+                            </div>
+                        </div>
+                    </div> -->
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-info">
+            <%= data==null ? 'Add' : 'Update' %>
+          </button>
+          <a href="/user"><button type="button" class="btn btn-default ml-2">Cancel</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

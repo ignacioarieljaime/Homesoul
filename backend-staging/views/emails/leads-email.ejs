@@ -1,0 +1,75 @@
+<!-- emailTemplate.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Lead Submission</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, p, ul {
+            margin: 0;
+            padding: 0;
+        }
+        /* Set background color and font styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        /* Container styling */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        /* Header styling */
+        .header {
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        /* Content styling */
+        .content {
+            padding: 20px;
+        }
+        /* Footer styling */
+        .footer {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 10px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>New Lead Submission</h1>
+        </div>
+        <div class="content">
+            <p>Hello Admin,</p>
+            <p>A new lead has been submitted with the following details:</p>
+            <ul>
+                <li><strong>Name:</strong> <%= leadsDetails.name %></li>
+                <li><strong>Email:</strong> <%= leadsDetails.email %></li>
+                <li><strong>Phone:</strong> <%= leadsDetails.phone %></li>
+                <li><strong>City:</strong> <%= leadsDetails.city %></li>
+                <li><strong>Province:</strong> <%= leadsDetails.province %></li>
+                <li><strong>Country:</strong> <%= leadsDetails.country %></li>
+            </ul>
+            <p>Please take necessary action.</p>
+        </div>
+        <div class="footer">
+            <p>Sent via Your <%= data.appName %></p>
+        </div>
+    </div>
+</body>
+</html>

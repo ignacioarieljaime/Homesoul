@@ -1,0 +1,18 @@
+image: alpine
+
+stages:
+  - deploy_staging
+
+deploy_staging:
+  stage: deploy_staging
+  before_script:
+    - apk add openssh-client
+    - apk add sshpass
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - sshpass ssh ajecvmadmin@20.220.169.115 "cd /var/www/html/backend && git checkout staging && git pull origin staging && npm install && npx sequelize-cli db:migrate && pm2 delete staging-homesoul && pm2 start "server.js" --name staging-homesoul && pm2 save && exit"
+  only:
+    - staging

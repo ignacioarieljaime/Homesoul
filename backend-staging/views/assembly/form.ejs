@@ -1,0 +1,164 @@
+<%- include('../layout/header') %>
+  <form id="crud-frm" class="crud-frm" method="post" action="<%= url %>" autocomplete="off"
+    enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <div class="card card-info card-outline">
+          <div class="card-header">
+            <h3 class="card-title">
+              <%= title %>
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Assembly Category </label>
+                  <select class="form-control select2" name="assemblyCategoryId" required>
+                    <option value="">Select category</option>
+                    <% assemblyCategories.forEach(assemblyCategory=> { %>
+                      <option value="<%= assemblyCategory.id %>" <%=data &&
+                        data.assemblyCategoryId===assemblyCategory.id ? 'selected' : '' %>><%= assemblyCategory.title %>
+                      </option>
+                      <% }); %>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Home Type</label>
+                  <select class="form-control select2" name="homeType">
+                    <option value="">Select Home Type</option>
+                    <option value="1" <%=data !=null && data['homeType']==1 ? 'selected' : '' %>>Attach</option>
+                    <option value="2" <%=data !=null && data['homeType']==2 ? 'selected' : '' %>>Detach</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Title </label>
+                  <input type="text" class="form-control" name="assemblyTitle"
+                    value="<%= data != null ? data['assemblyTitle'] : ''%>" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label> Sub title </label>
+                  <input type="text" class="form-control" name="subTitle"
+                    value="<%= data != null ? data['subTitle'] : ''%>" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Standard Cost </label>
+                  <input type="text" class="form-control" name="standardCost"
+                    value="<%= data != null ? data['standardCost'] : ''%>" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Total Effective RSI </label>
+                  <input type="text" class="form-control" name="totalEffectiveRSI"
+                    value="<%= data != null ? data['totalEffectiveRSI'] : ''%>" required>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Total Effective RValue</label>
+                  <input type="text" class="form-control" name="totalEffectiveRValue"
+                    value="<%= data != null ? data['totalEffectiveRValue'] : ''%>" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Max U Value</label>
+                  <input type="text" class="form-control" name="max_uValue"
+                    value="<%= data != null ? data['max_uValue'] : ''%>" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Min Energy rating</label>
+                  <input type="text" class="form-control" name="min_energy_rating"
+                    value="<%= data != null ? data['min_energy_rating'] : ''%>" >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Energy Efficiency (UEF)</label>
+                  <input type="text" class="form-control" name="energy_efficiency"
+                    value="<%= data != null ? data['energy_efficiency'] : ''%>" >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Levels</label>
+                  <input type="text" class="form-control" name="levels"
+                    value="<%= data != null ? data['levels'] : ''%>" >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-info">
+              <%= data==null ? 'Add' : 'Update' %>
+            </button>
+            <a href="/assembly"><button type="button" class="btn btn-default ml-2">Cancel</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <% if(data!=null){ %>
+    <div class="row">
+      <div class="col-lg-12 col-12">
+        <div class="card card-info card-outline">
+          <div class="card-header">
+            <h3 class="card-title">
+              Assembly-elements
+            </h3>
+            <div class="card-tools">
+              <a href="/assembly-elements/add/<%= assemblyId %>"><button type="button"
+                  class="btn btn-info btn-sm ml-3 ">Add
+                  New</button></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <table id="<%=tableId%>" data-loadurl="<%= loadList %>"
+                  class="table table-bordered table-striped dataTable">
+                  <thead>
+                    <tr>
+                      <th data-name="elementTitle" data-data="elementTitle">Element Title</th>
+                      <th data-name="elementDetails" data-data="elementDetails">Details</th>
+                      <th data-name="table" data-data="table">Table</th>
+                      <th data-name="effectiveRSI" data-data="effectiveRSI">RSI</th>
+                      <th data-name="action" class="action" data-data="action" data-sortable="false">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+      <%- include('../layout/footer') %>
+        <script>
+          var crudTable = null;
+          jQuery(document).ready(function (e) {
+            crudTable = siteServerSideDatatable('#<%= tableId %>', {});
+          });
+        </script>

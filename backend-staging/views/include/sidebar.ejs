@@ -1,0 +1,94 @@
+<aside class="main-sidebar elevation-4 sidebar-dark-info">
+  <a href="javascript:;" class="brand-link text-center">
+    <img src="/assets/img/logo.svg" class="brand-image img-circle elevation-3">
+    <span class="brand-text font-weight-light">
+      HomeSoul Admin
+    </span>
+  </a>
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="/assets/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="javascript:;" class="d-block">Admin</a>
+      </div>
+    </div>
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+        <% var myObject = [ 
+              { heading: "MAIN NAVIGATION" }, 
+              { href: "/dashboard" , route: "dashboard" , icon: "fas fa-tachometer-alt" ,title: "Dashboard" },
+              { href: "/site-settings" , route: "settings" , icon: "fas fa-cogs" ,title: "Site settings" }, 
+              {heading: 'USER MANAGEMENTS' }, 
+              { href: "/admin" , route: "admin" , icon: "fa fa-user-circle" ,title: "Admin" }, 
+              // { href: "/user" , route: "user" , icon: "fa fa-users" , title: "Users" },
+              { href: "/auditor" , route: "auditor" , icon: "fas fa-user-tie" ,title: "Auditor" }, 
+              { href: "/customer" , route: "customer" , icon: "fas fa-users" ,title: "Customers" }, 
+              {heading: 'MASTER' }, 
+              { href: "/nbc" , route: "nbc" , icon: "fas fa-layer-group" ,title: "NBC" }, 
+              { href: "/regions" , route: "regions" , icon: "fas fa-globe-asia" ,title: "Regions" }, 
+              { href: "/weather" , route: "weather" , icon: "fas fa-cloud-sun" ,title: "Weather" }, 
+              {heading: 'ASSEMBLY' },
+              { 
+                  title: "Assembly" ,icon: "fas fa-cogs" , 
+                  submenu: [
+                  { href: "/assembly-category" , route: "assembly-category" , icon: "fas fa-list" ,title: "Assembly-Category" }, 
+                  { href: "/assembly" , route: "assembly" , icon: "fas fa-cogs" ,title: "Assembly" }, 
+                  ] 
+              },
+              {heading: 'AUDIT MANAGEMENT' },
+              { href: "/audits" , route: "audit" , icon: "far fa-edit" ,title: "Audits" }, 
+              {heading: 'OTHERS' }, 
+              { href: "/leads" , route: "leads" , icon: "fas fa-question" ,title: "Leads" }, 
+              // {heading: 'Test' }, 
+              // { href: "/test" , route: "test" , icon: "fas fa-question" ,title: "Test" }, 
+        ]; %>
+
+        <% myObject.forEach((item)=> { %>
+        <% if (item.heading) { %>
+        <li class="nav-header">
+          <%= item.heading %>
+        </li>
+        <% } else if (item.submenu && item.submenu.length> 0) { %>
+        <% var menuActive='' ; %>
+        <% item.submenu.forEach((sMenu)=> { %>
+        <% if (route===sMenu.route) { %>
+        <% menuActive='active' ; %>
+        <% } %>
+        <% }); %>
+        <li class="nav-item <%= menuActive ? 'menu-open' : ''%>">
+          <a href="javascript:void(0)" class="nav-link <%= menuActive %>">
+            <i class="nav-icon <%= item.icon %>" style="vertical-align: text-bottom;"></i>
+            <p>
+              <%= item.title %><i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <% item.submenu.forEach((subItem)=> { %>
+            <li class="nav-item">
+              <a href="<%= subItem.href %>" class="nav-link <%= route === subItem.route ? 'active' : '' %>">
+                <i class="nav-icon <%= subItem.icon ?? 'far fa-circle' %>" style="vertical-align: text-bottom;"></i>
+                <p>
+                  <%= subItem.title %>
+                </p>
+              </a>
+            </li>
+            <% }); %>
+          </ul>
+        </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a href="<%= item.href %>" class="nav-link <%= route === item.route ? 'active' : '' %>">
+            <i class="nav-icon <%= item.icon ?? '' %>" style="vertical-align: text-bottom;"></i>
+            <p>
+              <%= item.title ?? '' %>
+            </p>
+          </a>
+        </li>
+        <% } %>
+        <% }); %>
+      </ul>
+    </nav>
+  </div>
+</aside>
